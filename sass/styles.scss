@@ -62,15 +62,15 @@ body {
 			&__parameters {
 				display: flex;
 				flex-direction: row;
-        gap: 10px;
-        line-height: 60px;
-        justify-content: space-between;
+				gap: 10px;
+				line-height: 60px;
+				justify-content: space-between;
 
 				.parameter {
 					line-height: 40px;
-          display: flex;
-          gap:10px;
-          margin-bottom: 10px;
+					display: flex;
+					gap: 10px;
+					margin-bottom: 10px;
 
 					span {
 						width: 25px;
@@ -92,7 +92,11 @@ body {
 				justify-content: center;
 				margin-bottom: 15px;
 				&--svg {
+					width: 50%;
+					height: 50%;
 					position: relative;
+					background-repeat: no-repeat;
+					background-position: center;
 					&::after {
 						position: absolute;
 						bottom: 0;
@@ -126,5 +130,8 @@ body {
 		display: flex;
 		justify-content: space-evenly;
 		width: 100%;
+
 	}
 }
+
+@import 'spritesStates';
