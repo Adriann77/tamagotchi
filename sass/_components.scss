@@ -1,0 +1,37 @@
+.eclipse {
+	position: relative;
+	background-image: url(/svg/action/Ellipse\ 19.svg);
+	background-repeat: no-repeat;
+	width: 75px;
+	height: 76px;
+	border: none;
+	background-color: colors.$yellow;
+	transition: background-image 0.2s;
+	cursor: pointer;
+
+	.action {
+		position: absolute;
+		right: 54%;
+		bottom: 56%;
+		transform: translate(50%, 50%);
+	}
+
+	&:hover {
+		background-image: url(/svg/action/Ellipse\ -hover.svg);
+	}
+}
+
+.restart {
+	background-image: url(/svg/restart/restart-default.svg);
+	width: 300px;
+	height: 75px;
+
+	cursor: pointer;
+	background-color: colors.$yellow;
+	background-repeat: no-repeat;
+	border: none;
+
+	&:hover {
+		background-image: url(/svg/restart/restart-hover.svg);
+	}
+}

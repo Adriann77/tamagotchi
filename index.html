@@ -1,15 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Tamagotchi</title>
-    <link href="./styles.css" rel="stylesheet" />
-  </head>
-  <body>
-    <div class="gameBoy">
-      <p class="bar">Energy <span class="health" /></p>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Tamagotchi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link href="./css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="gameBoy">
+    <div class="main-container">
+      <div class="inside__container">
+
+        <div class="rectangle">
+          <div class="rectangle__parameters">
+            
+            <div class="parameter">
+              <img src="/svg/parametres/Health.svg" alt=""> <span class="health__value">7</span>
+            </div>
+            <div class="parameter">
+              <img src="/svg/parametres/Hunger.svg" alt=""> <span class="hunger__value">6</span>
+            </div>
+            <div class="parameter">
+              <img src="/svg/parametres/Sleep.svg" alt=""> <span class="sleep__value">6</span>
+            </div>
+            <div class="parameter">
+              <img src="/svg/parametres/Fun.svg" alt="">
+              <span class="fun__value">6</span>
+            </div>
+          </div>
+          <div class="rectangle__tamago">
+            <div class="rectangle__tamago--svg">
+              <img src="/svg/tamago/State=Standing.svg" alt="">
+            </div>
+          </div>
+          <div class="rectangle__status">
+            <p class="rectangle__status--text">HAPPY</p>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="action-btns">
+        <button class=" eclipse hunger">
+        <img class="action" src="/svg/parametres/Hunger.svg" alt="">
+      </button>
+      <button class=" eclipse sleep">
+        <img class="action" src="/svg/parametres/Sleep.svg" alt="">
+      </button>
+      <button class=" eclipse fun">
+        <img class="action" src="/svg/parametres/Fun.svg" alt="">
+      </button>
     </div>
 
-    <script src="./app.js" type="module"></script>
-  </body>
+
+  </div>
+
+
+
+  <script src="./app.js" type="module"></script>
+</body>
+
 </html>
