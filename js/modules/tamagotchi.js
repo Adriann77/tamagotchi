@@ -50,6 +50,33 @@ export default class Tamagotchi {
 		this.displayHunger('.hunger__value');
 		this.displayEnergy('.sleep__value');
 		this.displayFun('.fun__value');
+		this.updateSprite();
+	};
+
+	updateSprite = () => {
+		const currState = document.querySelector('.rectangle');
+		const currStatus = document.querySelector('.rectangle__status--text');
+
+		if (this.fun.value >= 7 && this.health.value >= 7 && this.hunger.value >= 7 && this.energy.value >= 7) {
+			const prevState = currState.classList[1];
+			currState.classList.remove(prevState);
+			currState.classList.add('happy');
+			currStatus.textContent = 'HAPPY';
+		} else if (this.energy.value <= 6) {
+			const prevState = currState.classList[1];
+			currState.classList.remove(prevState);
+			currState.classList.add('sleepy');
+			currStatus.textContent = 'SLEEPY';
+		} else if (this.hunger.value <= 6) {
+			const prevState = currState.classList[1];
+			currState.classList.remove(prevState);
+			currState.classList.add('hungry');
+			currStatus.textContent = 'HUNGRY';
+		} else if (this.fun.value <= 6) {
+			currState.classList.remove(prevState);
+			currState.classList.add('bored');
+			currStatus.textContent = 'SAD';
+		}
 	};
 
 	mount = ({ healthElement, hungerElement, energyElement, funElement }) => {
