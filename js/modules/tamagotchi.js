@@ -14,51 +14,64 @@ export default class Tamagotchi {
 	displayHunger = elementSelector => {
 		const displayElement = document.querySelector(elementSelector);
 		displayElement.innerText = this.hunger.value;
+
 	};
 	displayEnergy = elementSelector => {
 		const displayElement = document.querySelector(elementSelector);
-		displayElement.innerText = Math.floor(this.energy.value);
+		displayElement.innerText = Math.round(this.energy.value);
 	};
 	displayFun = elementSelector => {
 		const displayElement = document.querySelector(elementSelector);
 		displayElement.innerText = this.fun.value;
 	};
 
-	decreaseValues = () => {
-		this.hunger.value -= 1;
-		this.fun.value -= 1;
-
-		setTimeout(() => {
-			if (this.fun.value > 5) {
+	decreaseHunger = elementSelector => {
+		if (this.hunger.value > 0) {
+			this.hunger.value--;
+			this.displayHunger(elementSelector);
+		}
+	};
+	decreaseFun = elementSelector => {
+		if (this.fun.value > 0) {
+			this.fun.value--;
+			this.displayFun(elementSelector);
+		}
+	};
+	decreaseEnergy = elementSelector => {
+		this.displayEnergy(elementSelector);
+		if (this.energy.value > 0) {
+			if (this.fun.value > 0) {
 				this.energy.value -= 0.5;
 			} else {
 				this.energy.value--;
 			}
-		}, 1);
-
-		if (this.hunger.value <= 0 || this.energy.value <= 0) {
-			this.health.value -= 1;
 		}
-
-		Object.keys(this).forEach(stat => {
-			if (this[stat].value < 0) {
-				this[stat].value = 0;
+	};
+	decreaseHealth = elementSelector => {
+		if (this.health.value > 0) {
+			this.displayHealth(elementSelector);
+			if (this.energy.value == 0 || this.hunger.value == 0) {
+				this.health.value--;
+				this.displayHealth(elementSelector);
 			}
-		});
+		}
+	};
 
-		this.displayHealth('.health__value');
-		this.displayHunger('.hunger__value');
-		this.displayEnergy('.sleep__value');
-		this.displayFun('.fun__value');
+	checkValue = elementSelector => {
+		const currSelector = document.querySelector(elementSelector);
+		if (currSelector > 9) {
+			currSelector.style.fontSize = '60' + 'px';
+		} else {
+			currSelector.style.fontSize = '40' + 'px';
+		}
 	};
 
 	mount = ({ healthElement, hungerElement, energyElement, funElement }) => {
-		this.displayHealth(healthElement);
-		this.displayHunger(hungerElement);
-		this.displayFun(funElement);
-		this.displayEnergy(energyElement);
 		setInterval(() => {
-			this.decreaseValues();
+			this.decreaseHealth(healthElement);
+			this.decreaseHunger(hungerElement);
+			this.decreaseFun(funElement);
+			this.decreaseEnergy(energyElement);
 		}, 1000);
 	};
 }
