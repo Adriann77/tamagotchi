@@ -1,3 +1,7 @@
+
+
+
+
 export default class Tamagotchi {
 	constructor() {
 		this.health = { value: 10, importance: 1 };
@@ -14,7 +18,6 @@ export default class Tamagotchi {
 	displayHunger = elementSelector => {
 		const displayElement = document.querySelector(elementSelector);
 		displayElement.innerText = this.hunger.value;
-
 	};
 	displayEnergy = elementSelector => {
 		const displayElement = document.querySelector(elementSelector);
@@ -39,14 +42,9 @@ export default class Tamagotchi {
 	};
 	decreaseEnergy = elementSelector => {
 		this.displayEnergy(elementSelector);
-		if (this.energy.value > 0) {
-			if (this.fun.value > 0) {
-				this.energy.value -= 0.5;
-			} else {
-				this.energy.value--;
-			}
-		}
+		this.energy.value -= this.fun.value > 0 ? 0.5 : 1;
 	};
+
 	decreaseHealth = elementSelector => {
 		if (this.health.value > 0) {
 			this.displayHealth(elementSelector);
@@ -57,14 +55,7 @@ export default class Tamagotchi {
 		}
 	};
 
-	checkValue = elementSelector => {
-		const currSelector = document.querySelector(elementSelector);
-		if (currSelector > 9) {
-			currSelector.style.fontSize = '60' + 'px';
-		} else {
-			currSelector.style.fontSize = '40' + 'px';
-		}
-	};
+
 
 	mount = ({ healthElement, hungerElement, energyElement, funElement }) => {
 		setInterval(() => {
