@@ -1,4 +1,4 @@
-let x = 1;
+let energyDecreaseRate = 1;
 export default class Tamagotchi {
 	constructor() {
 		this.health = { value: 10, importance: 1 };
@@ -32,17 +32,18 @@ export default class Tamagotchi {
 			this.displayHunger(elementSelector);
 		}
 	};
-	decreaseFun = elementSelector => {
+	decreaseFun = (elementSelector, energyElementSelector) => {
 		if (this.fun.value > 0) {
 			this.fun.value--;
 			this.displayFun(elementSelector);
 		} else {
-			x += 0.5;
+			energyDecreaseRate = 2;
+			this.decreaseEnergy(energyElementSelector);
 		}
 	};
 	decreaseEnergy = elementSelector => {
 		if (this.energy.value > 0) {
-			this.energy.value -= x;
+			this.energy.value -= energyDecreaseRate;
 		}
 		if (this.energy.value <= 0) {
 			this.energy.value = 0;
@@ -51,12 +52,13 @@ export default class Tamagotchi {
 	};
 
 	decreaseHealth = elementSelector => {
-
 		if (this.health.value > 0) {
-			if (this.energy.value <= 0 || this.hunger.value <= 0) {
+			if (this.hunger.value <= 0 && this.energy.value <= 0) {
+				this.health.value -= 2;
+			} else if (this.energy.value <= 0 || this.hunger.value <= 0) {
 				this.health.value--;
-				this.displayHealth(elementSelector);
 			}
+			this.displayHealth(elementSelector);
 		}
 	};
 
@@ -68,7 +70,7 @@ export default class Tamagotchi {
 		setInterval(() => {
 			this.decreaseHealth(healthElement);
 			this.decreaseHunger(hungerElement);
-			this.decreaseFun(funElement);
+			this.decreaseFun(funElement, energyElement);
 		}, 1000);
 		setInterval(() => {
 			this.decreaseEnergy(energyElement);
