@@ -36,7 +36,7 @@ export default class Tamagotchi {
 		if (this.fun.value > 0) {
 			this.fun.value--;
 			this.displayFun(elementSelector);
-      energyDecreaseRate = 1
+			if (energyDecreaseRate !== 1) energyDecreaseRate = 1;
 		} else {
 			energyDecreaseRate = 2;
 			this.decreaseEnergy(energyElementSelector);
@@ -54,9 +54,7 @@ export default class Tamagotchi {
 
 	decreaseHealth = elementSelector => {
 		if (this.health.value > 0) {
-			if (this.hunger.value <= 0 && this.energy.value <= 0) {
-				this.health.value -= 2;
-			} else if (this.energy.value <= 0 || this.hunger.value <= 0) {
+			if (this.energy.value <= 0 || this.hunger.value <= 0) {
 				this.health.value--;
 			}
 			this.displayHealth(elementSelector);
