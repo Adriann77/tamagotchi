@@ -169,7 +169,7 @@ body {
   background-image: url(/svg/tamago/State=Hungry.svg);
 }
 
-.bored .rectangle__tamago .rectangle__tamago--svg {
+.sad .rectangle__tamago .rectangle__tamago--svg {
   background-image: url(/svg/tamago/State=Bored.svg);
 }
 
