@@ -5,8 +5,6 @@ export default class Tamagotchi {
 		this.hunger = { value: 10, importance: 3 };
 		this.energy = { value: 10, importance: 2 };
 		this.fun = { value: 10, importance: 4 };
-
-		console.log('Tamagotchi initialized');
 	}
 
 	displayHealth = elementSelector => {
@@ -32,6 +30,7 @@ export default class Tamagotchi {
 			this.displayHunger(elementSelector);
 		}
 	};
+
 	decreaseFun = (elementSelector, energyElementSelector) => {
 		if (this.fun.value > 0) {
 			this.fun.value--;
@@ -61,6 +60,39 @@ export default class Tamagotchi {
 		}
 	};
 
+	checkCurrentStatus() {
+		const tamagoSpirit = document.querySelector('.rectangle');
+		const tamagoText = document.querySelector('.rectangle__status--text');
+		tamagoSpirit.classList.remove(tamagoSpirit.classList[1]);
+
+		const states = [
+			{
+				value: this.hunger.value,
+				importance: this.hunger.importance,
+				state: 'hungry',
+			},
+			{
+				value: this.fun.value,
+				importance: this.fun.importance,
+				state: 'sad',
+			},
+			{
+				value: this.energy.value,
+				importance: this.energy.importance,
+				state: 'sleepy',
+			},
+		];
+
+		const currentState = states.sort((a, b) => b.importance - a.importance).find(state => state.value <= 6);
+
+		if (this.health.value >= 7 && this.hunger.value >= 7 && this.fun.value >= 7 && this.energy.value >= 7) {
+			tamagoSpirit.classList.add('happy');
+			tamagoText.textContent = tamagoSpirit.classList[1].toUpperCase();
+		} else if (currentState) {
+			tamagoSpirit.classList.add(currentState.state);
+			tamagoText.textContent = currentState.state.toUpperCase();
+		}
+	}
 	mount = ({ healthElement, hungerElement, energyElement, funElement }) => {
 		this.displayEnergy(energyElement);
 		this.displayHealth(healthElement);
@@ -70,6 +102,7 @@ export default class Tamagotchi {
 			this.decreaseHealth(healthElement);
 			this.decreaseHunger(hungerElement);
 			this.decreaseFun(funElement, energyElement);
+			this.checkCurrentStatus();
 		}, 1000);
 		setInterval(() => {
 			this.decreaseEnergy(energyElement);
