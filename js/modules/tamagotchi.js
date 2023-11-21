@@ -5,6 +5,7 @@ export default class Tamagotchi {
 		this.hunger = { value: 10, importance: 3 };
 		this.energy = { value: 10, importance: 2 };
 		this.fun = { value: 10, importance: 4 };
+		this.feeding = false;
 	}
 
 	displayHealth = elementSelector => {
@@ -25,14 +26,24 @@ export default class Tamagotchi {
 	};
 
 	decreaseHunger = elementSelector => {
-		if (this.hunger.value > 0) {
+		if (!this.feeding && this.hunger.value > 0) {
 			this.hunger.value--;
+			this.displayHunger(elementSelector);
+		} else if (this.feeding && this.hunger.value >= 0 && this.hunger.value <10) {
+      
+      if(this.hunger.value == 9){
+        this.hunger.value +=1
+      }else if(this.hunger.value ==10){
+        this.hunger.value = 10
+      }else if(this.hunger.value <=8){
+        this.hunger.value +=2
+      }
 			this.displayHunger(elementSelector);
 		}
 	};
 
 	decreaseFun = (elementSelector, energyElementSelector) => {
-		if (this.fun.value > 0) {
+		if (!this.feeding && this.fun.value > 0) {
 			this.fun.value--;
 			this.displayFun(elementSelector);
 			if (energyDecreaseRate !== 1) energyDecreaseRate = 1;
@@ -42,7 +53,7 @@ export default class Tamagotchi {
 		}
 	};
 	decreaseEnergy = elementSelector => {
-		if (this.energy.value > 0) {
+		if (!this.feeding && this.energy.value > 0) {
 			this.energy.value -= energyDecreaseRate;
 		}
 		if (this.energy.value <= 0) {
@@ -52,13 +63,27 @@ export default class Tamagotchi {
 	};
 
 	decreaseHealth = elementSelector => {
-		if (this.health.value > 0) {
+		if (!this.feeding && this.health.value > 0) {
 			if (this.energy.value <= 0 || this.hunger.value <= 0) {
 				this.health.value--;
 			}
 			this.displayHealth(elementSelector);
 		}
 	};
+
+	startFeeding() {
+		if (!this.feeding) {
+			this.feeding = true;
+		} else {
+			this.feeding = false;
+		}
+	}
+
+	stopFeeding() {
+		if (this.feeding) {
+			this.feeding = false;
+		}
+	}
 
 	checkCurrentStatus() {
 		const tamagoSpirit = document.querySelector('.rectangle');
@@ -85,12 +110,17 @@ export default class Tamagotchi {
 
 		const currentState = states.sort((a, b) => b.importance - a.importance).find(state => state.value <= 6);
 
-		if (this.health.value >= 7 && this.hunger.value >= 7 && this.fun.value >= 7 && this.energy.value >= 7) {
-			tamagoSpirit.classList.add('happy');
-			tamagoText.textContent = tamagoSpirit.classList[1].toUpperCase();
-		} else if (currentState) {
-			tamagoSpirit.classList.add(currentState.state);
-			tamagoText.textContent = currentState.state.toUpperCase();
+		if (!this.feeding) {
+			if (this.health.value >= 7 && this.hunger.value >= 7 && this.fun.value >= 7 && this.energy.value >= 7) {
+				tamagoSpirit.classList.add('happy');
+				tamagoText.textContent = tamagoSpirit.classList[1].toUpperCase();
+			} else if (currentState) {
+				tamagoSpirit.classList.add(currentState.state);
+				tamagoText.textContent = currentState.state.toUpperCase();
+			}
+		} else if (this.feeding) {
+			tamagoSpirit.classList.add('eating');
+			tamagoText.textContent = 'EATING';
 		}
 	}
 	mount = ({ healthElement, hungerElement, energyElement, funElement }) => {
