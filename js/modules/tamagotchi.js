@@ -69,29 +69,28 @@ export default class Tamagotchi {
 			{
 				value: this.hunger.value,
 				importance: this.hunger.importance,
-				state: 'HUNGRY',
-			},
-			{
-				value: this.energy.value,
-				importance: this.energy.importance,
-				state: 'SAD',
+				state: 'hungry',
 			},
 			{
 				value: this.fun.value,
 				importance: this.fun.importance,
-				state: 'SLEEPY',
+				state: 'sad',
+			},
+			{
+				value: this.energy.value,
+				importance: this.energy.importance,
+				state: 'sleepy',
 			},
 		];
 
-		const currentState = states.sort((a, b) => a.importance - b.importance);
-		console.log(currentState);
+		const currentState = states.sort((a, b) => b.importance - a.importance).find(state => state.value <= 6);
 
 		if (this.health.value >= 7 && this.hunger.value >= 7 && this.fun.value >= 7 && this.energy.value >= 7) {
 			tamagoSpirit.classList.add('happy');
 			tamagoText.textContent = tamagoSpirit.classList[1].toUpperCase();
-		} else {
-			tamagoSpirit.classList.add(currentState[0].state);
-			tamagoText.textContent = currentState[0].state;
+		} else if (currentState) {
+			tamagoSpirit.classList.add(currentState.state);
+			tamagoText.textContent = currentState.state.toUpperCase();
 		}
 	}
 	mount = ({ healthElement, hungerElement, energyElement, funElement }) => {

@@ -122,6 +122,7 @@ body {
   margin-bottom: 15px;
 }
 .gameBoy .main-container .rectangle__tamago--svg {
+  transition: all 0.3s;
   width: 50%;
   height: 50%;
   position: relative;
@@ -140,6 +141,7 @@ body {
 .gameBoy .main-container .rectangle__status {
   width: 100%;
   height: 58px;
+  transition: all 0.3s;
   background-color: #e7f6fd;
 }
 .gameBoy .main-container .rectangle__status p {
