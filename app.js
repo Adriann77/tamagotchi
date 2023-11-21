@@ -1,10 +1,10 @@
 import Game from './js/game.js';
-import TamagotchiStates from './js/modules/tamagotchiStates.js';
+
 
 document.addEventListener('DOMContentLoaded', () => {
-	const currentState = document.querySelector('.rectangle')
+
 	const game = new Game();
-	const tamaStates = new TamagotchiStates(currentState);
+
 
 	// Start game
 	game.start({
@@ -14,5 +14,5 @@ document.addEventListener('DOMContentLoaded', () => {
 		funElement: '.fun__value',
 	});
 
-	tamaStates.getCurrentStatus();
+
 });
