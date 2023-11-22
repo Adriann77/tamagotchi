@@ -9,20 +9,14 @@ const playBtn = document.querySelector('.fun');
 export default class Game {
 	constructor() {
 		this.tamagotchi = new Tamagotchi();
-		this.abilities = new Abilities(eatBtn, sleepBtn, playBtn);
 	}
 
 	start = ({ healthElement, hungerElement, energyElement, funElement }) => {
 		this.tamagotchi.mount({ healthElement, hungerElement, energyElement, funElement });
-		this.abilities.show();
 
 		allBtns.forEach(btn =>
-			btn.addEventListener('click', () => {
-				if (btn.classList.contains('hunger')) {
-					this.tamagotchi.startFeeding();
-				} else {
-					this.tamagotchi.stopFeeding();
-				}
+			btn.addEventListener('click', (e) => {
+				this.tamagotchi.checkBtn(e.target)
 			})
 		);
 		eatBtn.addEventListener('click', () => {});

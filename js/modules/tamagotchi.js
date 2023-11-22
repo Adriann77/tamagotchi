@@ -1,11 +1,13 @@
 let energyDecreaseRate = 1;
+
 export default class Tamagotchi {
 	constructor() {
 		this.health = { value: 10, importance: 1 };
 		this.hunger = { value: 10, importance: 3 };
 		this.energy = { value: 10, importance: 2 };
 		this.fun = { value: 10, importance: 4 };
-		this.feeding = false;
+    this.feeding = false;
+   
 	}
 
 	displayHealth = elementSelector => {
@@ -29,15 +31,14 @@ export default class Tamagotchi {
 		if (!this.feeding && this.hunger.value > 0) {
 			this.hunger.value--;
 			this.displayHunger(elementSelector);
-		} else if (this.feeding && this.hunger.value >= 0 && this.hunger.value <10) {
-      
-      if(this.hunger.value == 9){
-        this.hunger.value +=1
-      }else if(this.hunger.value ==10){
-        this.hunger.value = 10
-      }else if(this.hunger.value <=8){
-        this.hunger.value +=2
-      }
+		} else if (this.feeding && this.hunger.value >= 0 && this.hunger.value < 10) {
+			if (this.hunger.value == 9) {
+				this.hunger.value += 1;
+			} else if (this.hunger.value == 10) {
+				this.hunger.value = 10;
+			} else if (this.hunger.value <= 8) {
+				this.hunger.value += 2;
+			}
 			this.displayHunger(elementSelector);
 		}
 	};
@@ -71,20 +72,6 @@ export default class Tamagotchi {
 		}
 	};
 
-	startFeeding() {
-		if (!this.feeding) {
-			this.feeding = true;
-		} else {
-			this.feeding = false;
-		}
-	}
-
-	stopFeeding() {
-		if (this.feeding) {
-			this.feeding = false;
-		}
-	}
-
 	checkCurrentStatus() {
 		const tamagoSpirit = document.querySelector('.rectangle');
 		const tamagoText = document.querySelector('.rectangle__status--text');
@@ -106,23 +93,66 @@ export default class Tamagotchi {
 				importance: this.energy.importance,
 				state: 'sleepy',
 			},
+      {
+        value: this.health.value,
+        importance: this.health.importance,
+        state: 'happy'
+      },
+			{
+				value: 5,
+				importance: 5,
+				state: 'feeding',
+			},
 		];
 
-		const currentState = states.sort((a, b) => b.importance - a.importance).find(state => state.value <= 6);
+		const currentState = states.sort((b, a) => b.importance - a.importance).find(state => state.value <= 6);
 
-		if (!this.feeding) {
-			if (this.health.value >= 7 && this.hunger.value >= 7 && this.fun.value >= 7 && this.energy.value >= 7) {
+    if(!this.feeding && this.health.value >=7 && this.hunger.value >=7){
+      currentState.state = 'happy'
+    }else if(this.feeding){
+      currentState.state = 'feeding'
+    }
+
+		switch (currentState.state) {
+			case 'happy':
 				tamagoSpirit.classList.add('happy');
-				tamagoText.textContent = tamagoSpirit.classList[1].toUpperCase();
-			} else if (currentState) {
-				tamagoSpirit.classList.add(currentState.state);
-				tamagoText.textContent = currentState.state.toUpperCase();
-			}
-		} else if (this.feeding) {
-			tamagoSpirit.classList.add('eating');
-			tamagoText.textContent = 'EATING';
+				tamagoText.textContent = 'HAPPY';
+				break;
+			case 'hungry':
+				tamagoSpirit.classList.add('hungry');
+				tamagoText.textContent = 'HUNGRY';
+				break;
+			case 'sad':
+				tamagoSpirit.classList.add('sad');
+				tamagoText.textContent = 'SAD';
+				break;
+			case 'eating':
+				tamagoSpirit.classList.add('eating');
+				tamagoText.textContent = 'EATING';
+				break;
+			case 'sleepy':
+				tamagoSpirit.classList.add('sleepy');
+				tamagoText.textContent = 'SLEEPY';
+				break;
+			case 'feeding':
+				tamagoSpirit.classList.add('eating');
+				tamagoText.textContent = 'EATING';
 		}
 	}
+
+	checkBtn(e){
+    if(e.classList.contains('hunger') || e.parentNode.classList.contains('action')){
+      if(this.feeding){
+        this.feeding = false;
+     
+      }else{
+        this.feeding = true;
+      }
+    }else{
+      this.feeding = false;
+    }
+  }
+
 	mount = ({ healthElement, hungerElement, energyElement, funElement }) => {
 		this.displayEnergy(energyElement);
 		this.displayHealth(healthElement);
