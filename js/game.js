@@ -13,12 +13,9 @@ export default class Game {
 
 	start = ({ healthElement, hungerElement, energyElement, funElement }) => {
 		this.tamagotchi.mount({ healthElement, hungerElement, energyElement, funElement });
-
-		allBtns.forEach(btn =>
-			btn.addEventListener('click', (e) => {
-				this.tamagotchi.checkBtn(e.target)
-			})
-		);
-		eatBtn.addEventListener('click', () => {});
+		eatBtn.addEventListener('click', () => {
+			this.tamagotchi.setStateEating();
+			eatBtn.removeEventListener('click', () => {});
+		});
 	};
 }
