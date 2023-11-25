@@ -15,7 +15,9 @@ export default class Game {
 		this.tamagotchi.mount({ healthElement, hungerElement, energyElement, funElement });
 		eatBtn.addEventListener('click', () => {
 			this.tamagotchi.setStateEating();
-			eatBtn.removeEventListener('click', () => {});
+			eatBtn.removeEventListener('click', () => {
+				this.tamagotchi.setStateEating();
+			});
 		});
 	};
 }

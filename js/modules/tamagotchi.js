@@ -28,7 +28,11 @@ export default class Tamagotchi {
 	}
 
 	increaseHunger(elementSelector) {
-		this.hunger.value += 2;
+		if (this.hunger.value < 9) {
+			this.hunger.value += 2;
+		} else if (this.hunger.value == 9) {
+			this.hunger.value++;
+		}
 		this.displayHunger(elementSelector);
 	}
 
@@ -83,38 +87,30 @@ export default class Tamagotchi {
 	displayStateinUI() {
 		const tamagoSprite = document.querySelector('.rectangle');
 		const tamagoText = document.querySelector('.rectangle__status--text');
+		let stateText = '';
 		switch (this.state) {
 			case '':
-				tamagoSprite.classList.remove(tamagoSprite.classList[1]);
-				tamagoSprite.classList.add('happy');
-				tamagoText.textContent = 'HAPPY';
 			case 'happy':
-				tamagoSprite.classList.remove(tamagoSprite.classList[1]);
-				tamagoSprite.classList.add('happy');
-				tamagoText.textContent = 'HAPPY';
+				stateText = 'HAPPY';
 				break;
 			case 'hungry':
-				tamagoSprite.classList.remove(tamagoSprite.classList[1]);
-				tamagoSprite.classList.add('hungry');
-				tamagoText.textContent = 'HUNGRY';
+				stateText = 'HUNGRY';
 				break;
 			case 'sad':
-				tamagoSprite.classList.remove(tamagoSprite.classList[1]);
-				tamagoSprite.classList.add('sad');
-				tamagoText.textContent = 'SAD';
+				stateText = 'SAD';
 				break;
 			case 'sleepy':
-				tamagoSprite.classList.remove(tamagoSprite.classList[1]);
-				tamagoSprite.classList.add('sleepy');
-				tamagoText.textContent = 'SLEEPY';
+				stateText = 'SLEEPY';
 				break;
 			case 'eating':
-				tamagoSprite.classList.remove(tamagoSprite.classList[1]);
-				tamagoSprite.classList.add('eating');
-				tamagoText.textContent = 'EATING';
+				stateText = 'EATING';
 
 				break;
 		}
+
+		tamagoSprite.classList.remove(tamagoSprite.classList[1]);
+		tamagoSprite.classList.add(this.state);
+		tamagoText.textContent = stateText;
 	}
 
 	displayHealth = elementSelector => {
