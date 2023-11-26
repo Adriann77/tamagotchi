@@ -1,5 +1,4 @@
 let energyDecreaseRate = 0.5;
-const eatBtn = document.querySelector('.hunger');
 
 export default class Tamagotchi {
 	constructor() {
@@ -10,7 +9,7 @@ export default class Tamagotchi {
 		this.fun = { value: 10, importance: 4 };
 
 		this.setParametersInterval = setInterval(() => {
-			if (this.state != 'eating') {
+			if (this.state != 'eating' && this.state != 'sleeping') {
 				this.decreaseFun('.fun__value');
 				this.decreaseHunger('.hunger__value');
 				this.decreaseHealth('.health__value');
@@ -18,10 +17,12 @@ export default class Tamagotchi {
 				this.checkStateChange();
 			} else if (this.state == 'eating') {
 				this.increaseHunger('.hunger__value');
+			} else if (this.state == 'sleeping') {
+				this.increaseEnergy('.sleep__value');
 			}
 		}, 1000);
 		this.setEnergyInterval = setInterval(() => {
-			if (this.state != 'eating') {
+			if (this.state != 'eating' && this.state != 'sleeping') {
 				this.decreaseEnergy('.sleep__value');
 			}
 		}, 2000);
@@ -34,6 +35,15 @@ export default class Tamagotchi {
 			this.hunger.value++;
 		}
 		this.displayHunger(elementSelector);
+	}
+
+	increaseEnergy(elementSelector) {
+		if (this.energy.value < 9) {
+			this.energy.value += 2;
+		} else if (this.energy.value == 9) {
+			this.energy.value++;
+		}
+		this.displayEnergy(elementSelector);
 	}
 
 	setState(state) {
@@ -72,13 +82,23 @@ export default class Tamagotchi {
 	}
 
 	setStateEating() {
-		const prevState = this.state;
 		if (this.state != 'eating') {
 			this.state = 'eating';
 
 			this.displayStateinUI();
 		} else {
-			this.state = '';
+			this.state = 'happy';
+			this.checkStateChange();
+			this.displayStateinUI();
+		}
+	}
+
+	setStateSleeping() {
+		if (this.state != 'sleeping') {
+			this.state = 'sleeping';
+			this.displayStateinUI();
+		} else {
+			this.state = 'happy';
 			this.checkStateChange();
 			this.displayStateinUI();
 		}
@@ -104,7 +124,9 @@ export default class Tamagotchi {
 				break;
 			case 'eating':
 				stateText = 'EATING';
-
+				break;
+			case 'sleeping':
+				stateText = 'SLEEPING';
 				break;
 		}
 

@@ -1,7 +1,6 @@
 import Tamagotchi from './modules/tamagotchi.js';
 import Abilities from './modules/abilities.js';
 
-const allBtns = document.querySelectorAll('.eclipse');
 const eatBtn = document.querySelector('.hunger');
 const sleepBtn = document.querySelector('.sleep');
 const playBtn = document.querySelector('.fun');
@@ -17,6 +16,12 @@ export default class Game {
 			this.tamagotchi.setStateEating();
 			eatBtn.removeEventListener('click', () => {
 				this.tamagotchi.setStateEating();
+			});
+		});
+		sleepBtn.addEventListener('click', () => {
+			this.tamagotchi.setStateSleeping();
+			sleepBtn.removeEventListener('click', () => {
+				this.tamagotchi.setStateSleeping();
 			});
 		});
 	};
