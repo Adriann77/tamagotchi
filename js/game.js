@@ -18,5 +18,8 @@ export default class Game {
 		sleepBtn.addEventListener('click', () => {
 			this.tamagotchi.setStateSleeping();
 		});
+		playBtn.addEventListener('click', () => {
+			this.tamagotchi.setStatePlaying();
+		});
 	};
 }

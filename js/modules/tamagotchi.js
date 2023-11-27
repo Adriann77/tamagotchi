@@ -9,7 +9,7 @@ export default class Tamagotchi {
 		this.fun = { value: 10, importance: 4 };
 
 		this.setParametersInterval = setInterval(() => {
-			if (this.state != 'eating' && this.state != 'sleeping') {
+			if (this.state != 'eating' && this.state != 'sleeping' && this.state != 'playing') {
 				this.decreaseFun('.fun__value');
 				this.decreaseHunger('.hunger__value');
 				this.decreaseHealth('.health__value');
@@ -19,10 +19,12 @@ export default class Tamagotchi {
 				this.increaseHunger('.hunger__value');
 			} else if (this.state == 'sleeping') {
 				this.increaseEnergy('.sleep__value');
+			} else if (this.state == 'playing') {
+				this.increaseFun('.fun__value', '.sleep__value');
 			}
 		}, 1000);
 		this.setEnergyInterval = setInterval(() => {
-			if (this.state != 'eating' && this.state != 'sleeping') {
+			if (this.state != 'eating' && this.state != 'sleeping' && this.state != 'playing') {
 				this.decreaseEnergy('.sleep__value');
 			}
 		}, 2000);
@@ -46,6 +48,21 @@ export default class Tamagotchi {
 		this.displayEnergy(elementSelector);
 	}
 
+	increaseFun(elementSelector, energyElement) {
+		if (this.fun.value < 10) {
+			if (this.fun.value == 9) {
+				this.fun.value++;
+			} else {
+				this.fun.value += 2;
+			}
+			this.energy.value--;
+			if (this.energy.value < 0) {
+				this.energy.value = 0;
+			}
+		}
+		this.displayEnergy(energyElement);
+		this.displayFun(elementSelector);
+	}
 	setState(state) {
 		this.state = state;
 	}
@@ -104,6 +121,17 @@ export default class Tamagotchi {
 		}
 	}
 
+	setStatePlaying() {
+		if (this.state != 'playing') {
+			this.state = 'playing';
+			this.displayStateinUI();
+		} else {
+			this.state = 'happy';
+			this.checkStateChange();
+			this.displayStateinUI();
+		}
+	}
+
 	displayStateinUI() {
 		const tamagoSprite = document.querySelector('.rectangle');
 		const tamagoText = document.querySelector('.rectangle__status--text');
@@ -127,6 +155,9 @@ export default class Tamagotchi {
 				break;
 			case 'sleeping':
 				stateText = 'SLEEPING';
+				break;
+			case 'playing':
+				stateText = 'PLAYING';
 				break;
 		}
 
