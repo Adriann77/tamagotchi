@@ -49,19 +49,20 @@ export default class Tamagotchi {
 	}
 
 	increaseFun(elementSelector, energyElement) {
-		if (this.fun.value < 9) {
-			this.fun.value += 2;
-		} else if (this.fun.value == 9) {
-			this.fun.value++;
-		}
-		this.energy.value--;
-		if (this.energy.value < 0) {
-			this.energy.value = 0;
+		if (this.fun.value < 10) {
+			if (this.fun.value == 9) {
+				this.fun.value++;
+			} else {
+				this.fun.value += 2;
+			}
+			this.energy.value--;
+			if (this.energy.value < 0) {
+				this.energy.value = 0;
+			}
 		}
 		this.displayEnergy(energyElement);
 		this.displayFun(elementSelector);
 	}
-
 	setState(state) {
 		this.state = state;
 	}
