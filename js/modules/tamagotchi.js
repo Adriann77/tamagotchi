@@ -1,10 +1,11 @@
 let energyDecreaseRate = 0.5;
-
+const actionBtns = document.querySelector('.action-btns')
+const restartBtn = document.querySelector('.restart')
 export default class Tamagotchi {
 	constructor() {
 		this.state = 'happy';
-		this.health = { value: 10, importance: 1 };
-		this.hunger = { value: 10, importance: 3 };
+		this.health = { value: 3, importance: 1 };
+		this.hunger = { value: 2, importance: 3 };
 		this.energy = { value: 10, importance: 2 };
 		this.fun = { value: 10, importance: 4 };
 
@@ -72,10 +73,20 @@ export default class Tamagotchi {
 		this.checkIfSad();
 		this.checkIfHungry();
 		this.checkIfSleepy();
+		this.checkIfDying();
+	}
+
+	checkIfDying() {
+		if (this.health.value <=0) {
+			this.setState('dead');
+			this.displayStateinUI()
+			actionBtns.style.display = 'none'
+			restartBtn.style.display = 'block'
+		}
 	}
 
 	checkIfHappy() {
-		if (this.health >= 7 && this.energy.value >= 7 && this.fun.value >= 7 && this.hunger.value >= 7) {
+		if (this.health.value >= 7 && this.energy.value >= 7 && this.fun.value >= 7 && this.hunger.value >= 7) {
 			this.setState('happy');
 		}
 	}
@@ -159,6 +170,9 @@ export default class Tamagotchi {
 			case 'playing':
 				stateText = 'PLAYING';
 				break;
+			case 'dead':
+				stateText = 'DEAD';
+				break;
 		}
 
 		tamagoSprite.classList.remove(tamagoSprite.classList[1]);
@@ -182,14 +196,12 @@ export default class Tamagotchi {
 		const displayElement = document.querySelector(elementSelector);
 		displayElement.textContent = this.fun.value;
 	};
-
 	decreaseHunger = elementSelector => {
 		if (this.hunger.value > 0) {
 			this.hunger.value--;
 		}
 		this.displayHunger(elementSelector);
 	};
-
 	decreaseFun = elementSelector => {
 		if (this.fun.value > 0) {
 			this.fun.value--;
@@ -206,7 +218,6 @@ export default class Tamagotchi {
 		}
 		this.displayEnergy(elementSelector);
 	};
-
 	decreaseHealth = elementSelector => {
 		if (this.health.value > 0) {
 			if (this.energy.value <= 0 || this.hunger.value <= 0) {
