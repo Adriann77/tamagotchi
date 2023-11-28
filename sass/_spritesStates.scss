@@ -1,7 +1,7 @@
 .happy {
 	.rectangle__tamago {
 		.rectangle__tamago--svg {
-			background-image: url(/svg/tamago/State=Standing.svg);
+			background-image: url(../svg/tamago/State=Standing.svg);
 		}
 	}
 }
@@ -9,14 +9,14 @@
 .sleepy {
 	.rectangle__tamago {
 		.rectangle__tamago--svg {
-			background-image: url(/svg/tamago/State=Sleepy.svg);
+			background-image: url(../svg/tamago/State=Sleepy.svg);
 		}
 	}
 }
 .hungry {
 	.rectangle__tamago {
 		.rectangle__tamago--svg {
-			background-image: url(/svg/tamago/State=Hungry.svg);
+			background-image: url(../svg/tamago/State=Hungry.svg);
 		}
 	}
 }
@@ -24,14 +24,14 @@
 	.rectangle__tamago {
 		.rectangle__tamago--svg {
 			
-			background-image: url(/svg/tamago/State=Bored.svg);
+			background-image: url(../svg/tamago/State=Bored.svg);
 		}
 	}
 }
 .dead {
 	.rectangle__tamago {
 		.rectangle__tamago--svg {
-			background-image: url(/svg/tamago/State=Dead.svg);
+			background-image: url(../svg/tamago/State=Dead.svg);
 		}
 	}
 }
@@ -39,7 +39,7 @@
 .eating {
 	.rectangle__tamago {
 		.rectangle__tamago--svg {
-			background-image: url(/svg/tamago/State=Eating\ 1.svg);
+			background-image: url(../svg/tamago/State=Eating\ 1.svg);
 			animation: tamagoEatingAnim 1s ease-in-out infinite;
 		}
 	}
@@ -47,16 +47,16 @@
 
 @keyframes tamagoEatingAnim {
 	from {
-		background-image: url(/svg/tamago/State=Eating\ 1.svg);
+		background-image: url(../svg/tamago/State=Eating\ 1.svg);
 	}
 	to {
-		background-image: url(/svg/tamago/State=Eating\ 2.svg);
+		background-image: url(../svg/tamago/State=Eating\ 2.svg);
 	}
 }
 .sleeping {
 	.rectangle__tamago {
 		.rectangle__tamago--svg {
-			background-image: url(/svg/tamago/State=Sleeping\ 1.svg);
+			background-image: url(../svg/tamago/State=Sleeping\ 1.svg);
 			animation: tamagoSleepingAnim 1s ease-in-out infinite;
 		}
 	}
@@ -64,7 +64,7 @@
 
 @keyframes tamagoSleepingAnim {
 	from {
-		background-image: url(/svg/tamago/State=Sleeping\ 1.svg);
+		background-image: url(../svg/tamago/State=Sleeping\ 1.svg);
 	}
 	to {
 		background-image: url(/svg/tamago/State=Sleeping\ 2.svg);
@@ -73,7 +73,7 @@
 .playing {
 	.rectangle__tamago {
 		.rectangle__tamago--svg {
-			background-image: url(/svg/tamago/State=Playing\ 1.svg);
+			background-image: url(../svg/tamago/State=Playing\ 1.svg);
 			animation: tamagoPlayingAnim 1.5s ease-out infinite;
 		}
 	}
@@ -81,9 +81,9 @@
 
 @keyframes tamagoPlayingAnim {
 	from {
-		background-image: url(/svg/tamago/State=Playing\ 1.svg);
+		background-image: url(../svg/tamago/State=Playing\ 1.svg);
 	}
 	to {
-		background-image: url(/svg/tamago/State=Playing\ 2.svg);
+		background-image: url(../svg/tamago/State=Playing\ 2.svg);
 	}
 }

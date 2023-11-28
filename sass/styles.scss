@@ -92,7 +92,7 @@ body {
 				justify-content: center;
 				margin-bottom: 15px;
 				&--svg {
-					transition: all .3s;
+					transition: all 0.3s;
 					width: 50%;
 					height: 50%;
 					position: relative;
@@ -113,7 +113,7 @@ body {
 			&__status {
 				width: 100%;
 				height: 58px;
-				transition: all .3s;
+				transition: all 0.3s;
 
 				background-color: #e7f6fd;
 				p {
@@ -132,7 +132,6 @@ body {
 		display: flex;
 		justify-content: space-evenly;
 		width: 100%;
-
 	}
 }
 

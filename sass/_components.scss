@@ -1,6 +1,6 @@
 .eclipse {
 	position: relative;
-	background-image: url(/svg/action/Ellipse\ 19.svg);
+	background-image: url(../svg/action/Ellipse\ 19.svg);
 	background-repeat: no-repeat;
 	width: 75px;
 	height: 76px;
@@ -17,12 +17,12 @@
 	}
 
 	&:hover {
-		background-image: url(/svg/action/Ellipse\ -hover.svg);
+		background-image: url(../svg/action/Ellipse\ -hover.svg);
 	}
 }
 
 .restart {
-	background-image: url(/svg/restart/restart-default.svg);
+	background-image: url(../svg/restart/restart-default.svg);
 	width: 300px;
 	height: 75px;
 	cursor: pointer;
@@ -34,6 +34,6 @@
 	display: none;
 
 	&:hover {
-		background-image: url(/svg/restart/restart-hover.svg);
+		background-image: url(../svg/restart/restart-hover.svg);
 	}
 }
