@@ -4,6 +4,7 @@ import Abilities from './modules/abilities.js';
 const eatBtn = document.querySelector('.hunger');
 const sleepBtn = document.querySelector('.sleep');
 const playBtn = document.querySelector('.fun');
+const restartBtn = document.querySelector('.restart')
 
 export default class Game {
 	constructor() {
@@ -21,5 +22,10 @@ export default class Game {
 		playBtn.addEventListener('click', () => {
 			this.tamagotchi.setStatePlaying();
 		});
+		restartBtn.addEventListener('click', ()=>{
+			this.tamagotchi.handleRestart();
+			this.tamagotchi.mount({ healthElement, hungerElement, energyElement, funElement });
+
+		})
 	};
 }
