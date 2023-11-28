@@ -1,6 +1,6 @@
 .eclipse {
   position: relative;
-  background-image: url(/svg/action/Ellipse\ 19.svg);
+  background-image: url(../svg/action/Ellipse\ 19.svg);
   background-repeat: no-repeat;
   width: 75px;
   height: 76px;
@@ -16,11 +16,11 @@
   transform: translate(50%, 50%);
 }
 .eclipse:hover {
-  background-image: url(/svg/action/Ellipse\ -hover.svg);
+  background-image: url(../svg/action/Ellipse\ -hover.svg);
 }
 
 .restart {
-  background-image: url(/svg/restart/restart-default.svg);
+  background-image: url(../svg/restart/restart-default.svg);
   width: 300px;
   height: 75px;
   cursor: pointer;
@@ -32,7 +32,7 @@
   display: none;
 }
 .restart:hover {
-  background-image: url(/svg/restart/restart-hover.svg);
+  background-image: url(../svg/restart/restart-hover.svg);
 }
 
 * {
@@ -160,61 +160,61 @@ body {
 }
 
 .happy .rectangle__tamago .rectangle__tamago--svg {
-  background-image: url(/svg/tamago/State=Standing.svg);
+  background-image: url(../svg/tamago/State=Standing.svg);
 }
 
 .sleepy .rectangle__tamago .rectangle__tamago--svg {
-  background-image: url(/svg/tamago/State=Sleepy.svg);
+  background-image: url(../svg/tamago/State=Sleepy.svg);
 }
 
 .hungry .rectangle__tamago .rectangle__tamago--svg {
-  background-image: url(/svg/tamago/State=Hungry.svg);
+  background-image: url(../svg/tamago/State=Hungry.svg);
 }
 
 .sad .rectangle__tamago .rectangle__tamago--svg {
-  background-image: url(/svg/tamago/State=Bored.svg);
+  background-image: url(../svg/tamago/State=Bored.svg);
 }
 
 .dead .rectangle__tamago .rectangle__tamago--svg {
-  background-image: url(/svg/tamago/State=Dead.svg);
+  background-image: url(../svg/tamago/State=Dead.svg);
 }
 
 .eating .rectangle__tamago .rectangle__tamago--svg {
-  background-image: url(/svg/tamago/State=Eating\ 1.svg);
+  background-image: url(../svg/tamago/State=Eating\ 1.svg);
   animation: tamagoEatingAnim 1s ease-in-out infinite;
 }
 
 @keyframes tamagoEatingAnim {
   from {
-    background-image: url(/svg/tamago/State=Eating\ 1.svg);
+    background-image: url(../svg/tamago/State=Eating\ 1.svg);
   }
   to {
-    background-image: url(/svg/tamago/State=Eating\ 2.svg);
+    background-image: url(../svg/tamago/State=Eating\ 2.svg);
   }
 }
 .sleeping .rectangle__tamago .rectangle__tamago--svg {
-  background-image: url(/svg/tamago/State=Sleeping\ 1.svg);
+  background-image: url(../svg/tamago/State=Sleeping\ 1.svg);
   animation: tamagoSleepingAnim 1s ease-in-out infinite;
 }
 
 @keyframes tamagoSleepingAnim {
   from {
-    background-image: url(/svg/tamago/State=Sleeping\ 1.svg);
+    background-image: url(../svg/tamago/State=Sleeping\ 1.svg);
   }
   to {
     background-image: url(/svg/tamago/State=Sleeping\ 2.svg);
   }
 }
 .playing .rectangle__tamago .rectangle__tamago--svg {
-  background-image: url(/svg/tamago/State=Playing\ 1.svg);
+  background-image: url(../svg/tamago/State=Playing\ 1.svg);
   animation: tamagoPlayingAnim 1.5s ease-out infinite;
 }
 
 @keyframes tamagoPlayingAnim {
   from {
-    background-image: url(/svg/tamago/State=Playing\ 1.svg);
+    background-image: url(../svg/tamago/State=Playing\ 1.svg);
   }
   to {
-    background-image: url(/svg/tamago/State=Playing\ 2.svg);
+    background-image: url(../svg/tamago/State=Playing\ 2.svg);
   }
 }/*# sourceMappingURL=styles.css.map */
