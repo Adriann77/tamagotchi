@@ -1,6 +1,7 @@
 let energyDecreaseRate = 0.5;
-const actionBtns = document.querySelector('.action-btns')
-const restartBtn = document.querySelector('.restart')
+const actionBtns = document.querySelector('.action-btns');
+const restartBtn = document.querySelector('.restart');
+
 export default class Tamagotchi {
 	constructor() {
 		this.state = 'happy';
@@ -10,7 +11,7 @@ export default class Tamagotchi {
 		this.fun = { value: 10, importance: 4 };
 
 		this.setParametersInterval = setInterval(() => {
-			if (this.state != 'eating' && this.state != 'sleeping' && this.state != 'playing') {
+			if (this.state != 'eating' && this.state != 'sleeping' && this.state != 'playing' && this.state != 'dead') {
 				this.decreaseFun('.fun__value');
 				this.decreaseHunger('.hunger__value');
 				this.decreaseHealth('.health__value');
@@ -25,7 +26,7 @@ export default class Tamagotchi {
 			}
 		}, 1000);
 		this.setEnergyInterval = setInterval(() => {
-			if (this.state != 'eating' && this.state != 'sleeping' && this.state != 'playing') {
+			if (this.state != 'eating' && this.state != 'sleeping' && this.state != 'playing' && this.state != 'dead') {
 				this.decreaseEnergy('.sleep__value');
 			}
 		}, 2000);
@@ -77,11 +78,11 @@ export default class Tamagotchi {
 	}
 
 	checkIfDying() {
-		if (this.health.value <=0) {
+		if (this.health.value <= 0) {
 			this.setState('dead');
-			this.displayStateinUI()
-			actionBtns.style.display = 'none'
-			restartBtn.style.display = 'block'
+			this.displayStateinUI();
+			actionBtns.style.display = 'none';
+			restartBtn.style.display = 'block';
 		}
 	}
 
@@ -172,12 +173,30 @@ export default class Tamagotchi {
 				break;
 			case 'dead':
 				stateText = 'DEAD';
+				this.energy.value = 0;
+				this.displayEnergy('.sleep__value');
+				this.fun.value = 0;
+				this.displayFun('.fun__value');
+				this.hunger.value = 0;
+				this.displayHunger('.hunger__value');
+
 				break;
 		}
 
 		tamagoSprite.classList.remove(tamagoSprite.classList[1]);
 		tamagoSprite.classList.add(this.state);
 		tamagoText.textContent = stateText;
+	}
+
+	handleRestart() {
+		this.health.value = 10;
+		this.energy.value = 10;
+		this.fun.value = 10;
+		this.hunger.value = 10;
+		restartBtn.style.display = 'none';
+		actionBtns.style.display = 'flex';
+		this.checkStateChange();
+		this.displayStateinUI();
 	}
 
 	displayHealth = elementSelector => {
