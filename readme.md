@@ -2,6 +2,8 @@
   Tamagotchi 👾
 </h1>
 
+https://adriann77.github.io/tamagotchi/
+
 This project is about recreating famous game.
 
 ---
@@ -18,3 +20,5 @@ This project is about recreating famous game.
 ### 🔧 Technical requirements
 
 HTML, CSS, Javascript
+
+
