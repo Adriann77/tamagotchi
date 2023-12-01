@@ -1,0 +1,11 @@
+{
+  "name": "tamagotchi",
+  "version": "1.0.0",
+  "description": "<h1 align=\"center\">   Tamagotchi 👾 </h1>",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adrian",
+  "license": "ISC"
+}
