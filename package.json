@@ -2,7 +2,7 @@
 	"name": "tamagotchi",
 	"version": "1.0.0",
 	"description": "<h1 align=\"center\">   Tamagotchi 👾 </h1>",
-	"main": "app.js",
+	"main": "dist/script.js",
 	"scripts": {
 		"tsc": "tsc",
 		"test": "echo \"Error: no test specified\" && exit 1"
