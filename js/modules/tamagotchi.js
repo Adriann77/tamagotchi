@@ -202,18 +202,30 @@ export default class Tamagotchi {
 	displayHealth = elementSelector => {
 		const displayElement = document.querySelector(elementSelector);
 		displayElement.textContent = this.health.value;
+		displayElement.textContent == 10
+			? (displayElement.style.fontSize = '40' + 'px')
+			: (displayElement.style.fontSize = '60' + 'px');
 	};
 	displayHunger = elementSelector => {
 		const displayElement = document.querySelector(elementSelector);
 		displayElement.textContent = this.hunger.value;
+		displayElement.textContent == 10
+			? (displayElement.style.fontSize = '40' + 'px')
+			: (displayElement.style.fontSize = '60' + 'px');
 	};
 	displayEnergy = elementSelector => {
 		const displayElement = document.querySelector(elementSelector);
 		displayElement.textContent = Math.floor(this.energy.value);
+		displayElement.textContent == 10
+			? (displayElement.style.fontSize = '40' + 'px')
+			: (displayElement.style.fontSize = '60' + 'px');
 	};
 	displayFun = elementSelector => {
 		const displayElement = document.querySelector(elementSelector);
 		displayElement.textContent = this.fun.value;
+		displayElement.textContent == 10
+			? (displayElement.style.fontSize = '40' + 'px')
+			: (displayElement.style.fontSize = '60' + 'px');
 	};
 	decreaseHunger = elementSelector => {
 		if (this.hunger.value > 0) {
