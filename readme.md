@@ -1,24 +1,19 @@
-<h1 align="center">
-  Tamagotchi 👾
-</h1>
+# Tamagotchi Project
 
-https://adriann77.github.io/tamagotchi/
+## Overview
 
-This project is about recreating famous game.
+This project is a web-based recreation of the classic Tamagotchi game, offering users a nostalgic virtual pet experience. The design, meticulously crafted on Figma, ensures an aesthetically pleasing and user-friendly interface.
 
----
+## Features
 
-### 📝 Project requirements
+- **Interactive States**: Engage your Tamagotchi in various activities, such as feeding, playing, and sleeping, influencing its dynamic states.
 
-- should handle 8 states `(happy, sleepy, sleeping,
-  hungry, eating, playing, sleepy, dead)`
-- should maintain 4 parameters `(health, hunger, energy, fun)`
-- should support 3 actions `(feeding, sleeping, playing)`
-- should support dying
-- should restarting game be available
+- **Dynamic State Changes**: Tamagotchi dynamically transitions between different states based on health, sleep, food, and play points.
 
-### 🔧 Technical requirements
+- **Web Technologies**: Developed using HTML, SCSS, and TypeScript, leveraging modern web technologies for a seamless and responsive user experience.
 
-HTML, CSS, Javascript
+- **Object-Oriented Programming**: The codebase adheres to object-oriented programming principles, enhancing maintainability and scalability.
 
+## Live Demo
 
+Explore the Tamagotchi project live at [Tamagotchi Live Demo](https://adriann77.github.io/tamagotchi/).
